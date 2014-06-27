@@ -13,10 +13,6 @@ ENV MANDRILL_API_KEY MANDRILL_KEY
 ADD sasl_passwd /etc/postfix/
 ADD main.cf /etc/postfix/
 ADD postfix-supervisord.conf /etc/supervisor/conf.d/postfix.conf
-# I don't know enough about postfix. The config doesn't do a chroot, so I
-# don't know why this is necessary but I had to do it to get it to work:
-RUN cp /etc/resolv.conf /var/spool/postfix/etc/
-RUN cp /etc/services /var/spool/postfix/etc/
 
 # syslog-ng
 ADD syslog-ng-supervisor.conf /etc/supervisor/conf.d/syslog-ng.conf
