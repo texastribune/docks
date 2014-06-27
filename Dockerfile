@@ -1,4 +1,4 @@
-FROM x110dc/dev-base
+FROM ubuntu:14.04
 MAINTAINER tech@texastribune.org
 
 RUN apt-get update
