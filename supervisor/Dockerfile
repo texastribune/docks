@@ -9,4 +9,4 @@ RUN apt-get install -yq supervisor
 
 RUN mkdir -p /app/logs
 
-ONBUILD ENTRYPOINT supervisord
+ONBUILD ENTRYPOINT ["/usr/bin/supervisord", "-n"]
