@@ -1,5 +1,8 @@
+APP=elasticsearch
+NAMESPACE=texastribune
+
 build:
-	docker build --tag="elasticsearch" .
+	docker build --tag=${NAMESPACE}/${APP} .
 
 run:
-	docker run --detach=true --publish=49200:9200 --publish=49300:9300 elasticsearch
+	docker run --detach=true --publish=9200:9200 --publish=9300:9300 --name=${APP} ${NAMESPACE}/${APP}
