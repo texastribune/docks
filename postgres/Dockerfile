@@ -3,8 +3,8 @@
 # modified from the example Dockerfile from
 # http://docs.docker.io/en/latest/examples/postgresql_service/
 
-FROM ubuntu:12.04
-MAINTAINER danielc@pobox.com
+FROM ubuntu:14.04
+MAINTAINER tech@texastribune.org
 
 # Add the PostgreSQL PGP key to verify their Debian packages.
 # It should be the same key as https://www.postgresql.org/media/keys/ACCC4CF8.asc 
@@ -64,4 +64,3 @@ VOLUME	["/etc/postgresql", "/var/log", "/var/lib/postgresql"]
 
 # Set the default command to run when starting the container
 CMD ["/usr/lib/postgresql/9.3/bin/postgres", "-D", "/var/lib/postgresql/9.3/main", "-c", "config_file=/etc/postgresql/9.3/main/postgresql.conf"]
-
