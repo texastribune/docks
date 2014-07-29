@@ -1,5 +1,5 @@
 APP=postgres
-NAMESPACE=x110dc
+NAMESPACE=texastribune
 
 build:
 	docker build --tag=${NAMESPACE}/${APP} .
