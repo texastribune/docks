@@ -54,6 +54,9 @@ RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/9.3/main/pg_hba.co
 RUN echo "listen_addresses='*'" >> /etc/postgresql/9.3/main/postgresql.conf
 
 RUN echo "checkpoint_segments = 32" >> /etc/postgresql/9.3/main/postgresql.conf
+
+# added this because of this bug: https://github.com/docker/docker/issues/783
+# but we don't need SSL right now anyway so it's ok
 RUN echo "ssl = false" >> /etc/postgresql/9.3/main/postgresql.conf
 
 # Expose the PostgreSQL port
