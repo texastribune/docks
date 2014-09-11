@@ -19,4 +19,4 @@ ADD nginx.conf /app/
 ADD nginx.supervisor.conf /etc/supervisor/conf.d/
 
 VOLUME ["/app/logs"]
-EXPOSE 80
+EXPOSE 8000
