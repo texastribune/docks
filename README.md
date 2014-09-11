@@ -12,15 +12,28 @@ After contributions are merged, they can be pushed back out to their individual
 repositories.
 
 
-### Subtrees
+Subtrees
+--------
+
+Git subtrees let us store all our Docker images in one place while giving each
+image its own Git remote and history at the same time.
+
+### Usage
 
 To help with the verbose arguments to `git subtree`, there's a helper included.
-To add all the git remotes needed, run:
+
+#### Adding all the Git remotes
+
+Each Docker image has its own special remote. To make it easier for developers
+to work on all of them, you can run this command to set up all the remotes at
+once:
 
     ./subtree remotes
 
-After you're satisfied with your docker image, you can push changes to its
-dedicated git repository with:
+#### Pushing updates
+
+After you're satisfied with your docker image, you can push changes back to
+their dedicated repository with:
 
     ./subtree push <name>
 
