@@ -12,7 +12,7 @@ WORKDIR /app
 # TOOD: move this to ancestor image?
 RUN mkdir /app/run
 
-ADD gunicorn.py /app/
+ADD gunicorn_conf.py /app/
 ADD gunicorn.supervisor.conf /etc/supervisor/conf.d/
 
 ADD nginx.conf /app/
