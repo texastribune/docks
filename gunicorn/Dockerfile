@@ -6,9 +6,10 @@ RUN apt-get -yq install nginx
 # See https://github.com/benoitc/gunicorn/issues/788
 RUN pip install gunicorn==19.1.1
 
+# the parent image creates this directory (along with /app/logs)
 WORKDIR /app
 
-RUN mkdir -p /app/logs
+# TOOD: move this to ancestor image?
 RUN mkdir /app/run
 
 ADD gunicorn.py /app/
