@@ -66,7 +66,8 @@ For a more complex scenario, let's say we're forking an existing project:
 7. Run `./subtree push fork` to push changes up, triggering a new build in the
    Index
 
+#### Maintaining multiple branches in a remote
 
-### Tagged Images
-
-_TODO_
+While this is possible, there is not a simple way of doing this using git
+subtrees. While there are several possible approaches, we're waiting until we
+actually need to do this.
