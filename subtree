@@ -6,6 +6,7 @@
 #
 set -e
 
+# Make sure a subtree name was specified as an argument.
 function check_name() {
   if [ -z $2 ]; then
     echo "Must enter a name \"pull <name>\""
@@ -26,19 +27,19 @@ case "$1" in
 
   # initialize a subtree from an existing remote
   init)
-    git subtree add --prefix=$2 $2 master
+    git subtree add --prefix=$2 ${@:2} master
     ;;
 
   # pull
   pull)
     check_name $*
-    git subtree pull --prefix=$2 $2 master
+    git subtree pull --prefix=$2 ${@:2} master
     ;;
 
   # push
   push)
     check_name $*
-    git subtree push --prefix=$2 $2 master
+    git subtree push --prefix=$2 ${@:2} master
     ;;
 
 esac
