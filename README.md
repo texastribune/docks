@@ -16,11 +16,21 @@ Subtrees
 --------
 
 Git subtrees let us store all our Docker images in one place while giving each
-image its own Git remote and history at the same time.
+image its own Git remote and history at the same time. Using git subtrees also
+gives us:
+
+* Ability to do webhooks from the Index for these Dockerfiles
+* Ability to do tagged builds in the Index for these Dockerfiles
+* Simpler developer overhead of maintaining *n* projects:
+    * It's easier to get started because you only have to check out one git
+      repository and set up one project in your editor
+    * You can refer to other Dockerfiles easier
+    * We can implement best practices across all of our Dockerfiles at once
 
 ### Usage
 
-To help with the verbose arguments to `git subtree`, there's a helper included.
+To help with the verbose arguments to `git subtree`, there's a helper included:
+`subtree`.
 
 #### Adding all the Git remotes
 
@@ -54,7 +64,7 @@ For a more complex scenario, let's say we're forking an existing project:
     3. Pull Request
     4. Merge
 7. Run `./subtree push fork` to push changes up, triggering a new build in the
-   Docker Registry
+   Index
 
 
 ### Tagged Images
