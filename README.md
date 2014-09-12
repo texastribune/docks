@@ -32,10 +32,29 @@ once:
 
 #### Pushing updates
 
-After you're satisfied with your docker image, you can push changes back to
-their dedicated repository with:
+After you're satisfied with your updates to a Docker image, you can push
+changes back to their dedicated repository with:
 
     ./subtree push <name>
+
+#### Forking an existing repo
+
+For a more complex scenario, let's say we're forking an existing project:
+
+1. Fork the project in github. Let's say we're forking utensils/fork to
+   texastribune/fork
+2. Update ./subtree's `remote` command to add a remote named `fork` to
+   texastribune/fork
+3. Run `./subtree remotes` to add the remote
+4. Run `./subtree init fork` to link the two
+5. Run `./subtree pull fork --squash` to bring the project into this one
+6. Make your updates and commit them as you normally would:
+    1. Branch
+    2. Commit
+    3. Pull Request
+    4. Merge
+7. Run `./subtree push fork` to push changes up, triggering a new build in the
+   Docker Registry
 
 
 ### Tagged Images
