@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM texastribune/base
 MAINTAINER tech@texastribune.org
 
 RUN apt-get update
