@@ -78,4 +78,8 @@ case "$1" in
     git subtree push --prefix=$2 ${@:2} master
     ;;
 
+  *)
+    help
+    ;;
+
 esac
