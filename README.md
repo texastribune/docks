@@ -68,7 +68,7 @@ For a more complex scenario, let's say we're forking an existing project:
 
 #### Creating a new image
 
-Let's say you're making a Docker image for the hot new app: snazzle:
+Let's say you're making a Docker image for the hot new app, snazzle:
 
 1. Create the `snazzle` Docker image here:
     1. `mkdir snazzle`
@@ -76,7 +76,7 @@ Let's say you're making a Docker image for the hot new app: snazzle:
     3. `vi Dockerfile`
     4. `git commit`
     5. etc.
-5. Create a new empty repository, let's say it's github.com:texastribune/docker-sputnik.git
+5. Create a new empty repository, let's say it's github.com:texastribune/docker-snazzle.git
 6. Update `subtree` to add it to the REMOTES definition. Following the pattern,
    it would look like: `[snazzle]=github.com:texastribune/docker-snazzle.git`
 7. Add the `snazzle` remote: `./subtree remotes`
