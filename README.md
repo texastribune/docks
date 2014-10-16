@@ -7,7 +7,7 @@ its own repository, the full history will be there as well.
 ### Contributing
 
 All commits and pull requests should be done in the master repository: docks.
-This is so we don't have to have _n_ projects set up for _n_ docker images.
+This is so you only need one project in your editor up for _n_ docker images.
 After contributions are merged, they can be pushed back out to their individual
 repositories.
 
@@ -65,6 +65,35 @@ For a more complex scenario, let's say we're forking an existing project:
     4. Merge
 7. Run `./subtree push fork` to push changes up, triggering a new build in the
    Index
+
+#### Creating a new image
+
+Let's say you're making a Docker image for the hot new app: snazzle:
+
+1. Create the `snazzle` Docker image here:
+    1. `mkdir snazzle`
+    2. `cd snazzle`
+    3. `vi Dockerfile`
+    4. `git commit`
+    5. etc.
+5. Create a new empty repository, let's say it's github.com:texastribune/docker-sputnik.git
+6. Update `subtree` to add it to the REMOTES definition. Following the pattern,
+   it would look like: `[snazzle]=github.com:texastribune/docker-snazzle.git`
+7. Add the `snazzle` remote: `./subtree remotes`
+8. Tell git-subtree that the `snazzle` directory is associated with the
+   `snazzle` remote: `./subtree init snazzle`
+9. Push your code to the `snazzle` repo: `./subtree push snazzle`
+10. Continue editing `snazzle` and committing changes
+11. As you're ready, keep pushing changes to `snazzle` with `./subtree push snazzle`
+12. When you're ready to publish to the Docker Registry, add it using the
+    `texastribune/docker-snazzle.git` remote, not the remote for this project.
+13. (Advanced) If you need to maintain two versions of `snazzle`, the easist
+    way is to just treat it as a separate project.
+    1. Checkout the texastribune/docker-snazzle.git remote like you normally
+       would.
+    2. Branch and edit the project from there, instead of this main integration
+       project.
+
 
 #### Maintaining multiple branches in a remote
 
