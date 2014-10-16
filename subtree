@@ -4,8 +4,15 @@
 #
 # git remotes and directories must have the same name
 #
-set -e
+# requires bash 4, see http://www.artificialworlds.net/blog/2012/10/17/bash-associative-array-examples/
 
+# set -e  need to let nonzero exits through to check git remotes
+
+declare -A REMOTES
+REMOTES=(
+  [mandrill]=git@github.com:texastribune/docker-mandrill.git
+  [sputnik]=git@github.com:texastribune/docker-sputnik.git
+)
 
 # Print help
 # Trying to conform to http://docopt.org/
@@ -40,13 +47,18 @@ case "$1" in
     ;;
 
   # add all remotes
-  # TODO move the configuration logic to the top of this file
   remotes)
     echo "Adding remotes for other docker images"
-    echo "  sputnik"
-    git remote add sputnik git@github.com:texastribune/docker-sputnik.git 2> /dev/null || true
-    echo "  mandrill"
-    git remote add mandrill git@github.com:texastribune/docker-mandrill.git 2> /dev/null || true
+    for name in "${!REMOTES[@]}"; do
+      remote=${REMOTES[$name]}
+      echo -en "  $name\t$remote\t"
+      git remote add $name $remote 2> /dev/null
+      if [ $? -eq 0 ]; then
+        echo "[added]"
+      else
+        echo "[skipped]"
+      fi
+    done
     ;;
 
   # initialize a subtree from an existing remote
