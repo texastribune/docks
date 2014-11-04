@@ -18,5 +18,7 @@ ADD gunicorn.supervisor.conf /etc/supervisor/conf.d/
 ADD nginx.conf /app/
 ADD nginx.supervisor.conf /etc/supervisor/conf.d/
 
+RUN pip install supervisor-stdout
+
 VOLUME ["/app/logs"]
 EXPOSE 8000

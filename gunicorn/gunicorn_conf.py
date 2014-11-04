@@ -20,8 +20,8 @@ worker_class = 'sync'
 # max_requests = 1000
 
 # logging:
-accesslog = '/app/logs/gunicorn.access.log'
-errorlog = '/app/logs/gunicorn.error.log'
+accesslog = "-"
+errorlog = "-"
 loglevel = 'info'
 
 # where to store the PID file:

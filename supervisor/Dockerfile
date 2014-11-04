@@ -5,5 +5,7 @@ RUN apt-get install -yq supervisor
 
 RUN mkdir -p /app/logs
 
-ONBUILD ENTRYPOINT ["/usr/bin/supervisord", "-n"]
+ADD supervisord.conf /etc/supervisor/
+
+ONBUILD ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
 ONBUILD CMD []
