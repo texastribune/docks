@@ -1,7 +1,8 @@
 APP=gunicorn
+NAMESPACE=texastribune
 
 build:
-	docker build --tag=${APP} .
+	docker build --tag=${NAMESPACE}/${APP} .
 #
 #  You could use a completely different image to debug; maybe one with your
 #  favorite tools already present:
