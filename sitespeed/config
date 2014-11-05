@@ -1,0 +1,3 @@
+BROWSERS=chrome,firefox
+SUMMARY_BOXES=jsPerPage,jsWeight,jsWeightPerPage,jsSyncInHead,firstPaintTime,ruleScore
+PAGES_COLUMNS=jsPerPage,jsSyncInHead,jsWeightPerPage,firstPaintTime
