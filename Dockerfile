@@ -55,3 +55,6 @@ RUN unzip yslow-phantomjs-3.1.8.zip
 
 # TODO: this should be replaced by the docker image under test:
 ENTRYPOINT ["/usr/bin/phantomjs", "/app/yslow.js","-i","grade", "-threshold", "B", "-f", "junit", "http://www.texastribune.org/"]
+ADD test.sh /app/
+RUN chmod +x /app/test.sh
+ENTRYPOINT ["/app/test.sh"]
