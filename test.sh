@@ -10,7 +10,7 @@ set -o xtrace
 
 phantomjs yslow.js -i comps -f xml http://test-subject:8000/ > /results/yslow.xml
 # this will exit with a non-zero code if the tests don't pass:
-phantomjs yslow.js -i grade -t '{"overall": "0", "ynumreq": "50", "ycdn": "0", "ycompress": "50", "ymindom": "70", "ycookiefree": "30", "ynofilter": "15", "ycdn": "F" }' -f tap http://test-subject:8000/ > /results/yslow.tap
+phantomjs yslow.js -i grade -t '{"overall": "0", "yexpires": "0", "ydns": "0", "ynumreq": "50", "ycdn": "0", "ycompress": "20", "ymindom": "70", "ycookiefree": "30", "ynofilter": "15", "ycdn": "F" }' -f tap http://test-subject:8000/ > /results/yslow.tap
 
 export DISPLAY=:1.0
 
