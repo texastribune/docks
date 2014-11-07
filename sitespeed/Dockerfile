@@ -35,7 +35,7 @@ RUN \
   rm -rf /var/lib/apt/lists/*
 
 RUN npm install -g phantomjs chromedriver browsertime
-RUN npm install sitespeed.io@3.0.0-beta -g
+RUN npm install sitespeed.io@3.0.0-beta-3 -g
 
 VOLUME /results
 # sitespeed.io -r /sitespeed-results -d 0 -b chrome,firefox -u http://www.texastribune.org/
