@@ -1,19 +1,17 @@
 #!/usr/bin/env bash
 
 set -o nounset
+# we don't want to stop if one job returns non-zero
 #set -o errexit
 set -o pipefail
 set -o xtrace
 
 /etc/init.d/xvfb start
 
-phantomjs yslow.js -i comps -f xml http://test-subject:8000/ > /results/yslow.xml
-echo $?
-# we don't want this individual command to exit w/ status 0
-#phantomjs yslow.js -i grade -t '{"overall": "C", "ycdn": "F"}' -f tap http://test-subject:8000/ > /results/yslow.tap || true
-phantomjs yslow.js -i grade -t '{"overall": "C", "ycdn": "F"}' -f tap http://test-subject:8000/ > /results/yslow.tap
-echo $?
+#phantomjs yslow.js -i comps -f xml http://test-subject:8000/ > /results/yslow.xml
+# this will exit with a non-zero code if the tests don't pass:
+#phantomjs yslow.js -i grade -t '{"overall": "C", "ycdn": "F"}' -f tap http://test-subject:8000/ > /results/yslow.tap
+
+export DISPLAY=:1.0
 sitespeed.io -r /results -d 0 -b firefox -u http://test-subject:8000/
-echo $?
 sitespeed-junit.io -r /results -o /results -l 85 -a 85
-echo $?
