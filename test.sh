@@ -13,5 +13,6 @@ set -o xtrace
 #phantomjs yslow.js -i grade -t '{"overall": "C", "ycdn": "F"}' -f tap http://test-subject:8000/ > /results/yslow.tap
 
 export DISPLAY=:1.0
-sitespeed.io -r /results -d 0 -b firefox -u http://test-subject:8000/
-sitespeed-junit.io -r /results -o /results -l 85 -a 85
+#sitespeed.io -r /results -d 0 -b firefox -u http://test-subject:8000/
+
+sitespeed.io -d 0 --junit --url http://test-subject:8000 "-b chrome -n 1" > /results/sitespeed.xml
