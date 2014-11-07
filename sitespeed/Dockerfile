@@ -37,7 +37,7 @@ RUN \
 RUN npm install -g phantomjs chromedriver browsertime
 RUN npm install sitespeed.io@3.0.0-beta -g
 
-VOLUME /sitespeed-results
+VOLUME /results
 # sitespeed.io -r /sitespeed-results -d 0 -b chrome,firefox -u http://www.texastribune.org/
 # --limitFile
 # --browser
