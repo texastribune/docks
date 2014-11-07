@@ -13,6 +13,10 @@ phantomjs yslow.js -i comps -f xml http://test-subject:8000/ > /results/yslow.xm
 phantomjs yslow.js -i grade -t '{"overall": "C", "ycdn": "F"}' -f tap http://test-subject:8000/ > /results/yslow.tap
 
 export DISPLAY=:1.0
+
+# remove any previous results
+rm -r /results/test-subject
 sitespeed.io -r /results -d 0 -b firefox -u http://test-subject:8000/
 
 sitespeed.io -d 0 --tap --url http://test-subject:8000 "-b chrome -n 1" > /results/sitespeed.tap
+mv /results/test-subject/*/* /results/test-subject/
