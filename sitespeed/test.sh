@@ -6,6 +6,7 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
+
 YSLOW_THRESHOLDS=${YSLOW_THRESHOLDS:-'{"overall": "0",
   "yexpires": "0",
   "ydns": "0",
@@ -20,7 +21,7 @@ YSLOW_THRESHOLDS=${YSLOW_THRESHOLDS:-'{"overall": "0",
 # we get the overall score, the response time and load time from here:
 phantomjs yslow.js -i comps -f xml http://test-subject:8000/ > /results/yslow.xml
 # this will exit with a non-zero code if the tests don't pass:
-phantomjs yslow.js -i grade -t ${YSLOW_THRESHOLDS} -f tap http://test-subject:8000/ > /results/yslow.tap
+phantomjs yslow.js -i grade -t "${YSLOW_THRESHOLDS}" -f tap http://test-subject:8000/ > /results/yslow.tap
 
 /etc/init.d/xvfb start
 export DISPLAY=:1.0
