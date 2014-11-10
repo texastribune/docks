@@ -6,15 +6,15 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-YSLOW_THRESHOLDS=${YSLOW_THRESHOLDS:-'{"overall": "0", \
-  "yexpires": "0", \
-  "ydns": "0", \
-  "ynumreq": "30", \
-  "ycdn": "0", \
-  "ycompress": "20", \
-  "ymindom": "70", \
-  "ycookiefree": "30", \
-  "ynofilter": "15", \
+YSLOW_THRESHOLDS=${YSLOW_THRESHOLDS:-'{"overall": "0",
+  "yexpires": "0",
+  "ydns": "0",
+  "ynumreq": "30",
+  "ycdn": "0",
+  "ycompress": "20",
+  "ymindom": "70",
+  "ycookiefree": "30",
+  "ynofilter": "15",
   "ycdn": "F" }'}
 
 # we get the overall score, the response time and load time from here:
