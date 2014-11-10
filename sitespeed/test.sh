@@ -31,6 +31,9 @@ phantomjs yslow.js -i comps -f xml http://test-subject:8000/ > /results/yslow.xm
 for URL in "$@"
 do
   short=`echo ${URL} | tr -cd [[:alpha:]]`
+  if [[ $short="" ]]; then
+    short="slash"
+  fi
   phantomjs yslow.js -i grade -t "${YSLOW_THRESHOLDS}" -f tap test-subject:8000${URL} > /results/${short}.tap
 done
 
