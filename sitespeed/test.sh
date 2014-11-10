@@ -13,6 +13,8 @@ do
   URLS="${URLS} http://test-subject:8000${var}"
 done
 
+# this is our default; it can be overridden by passing in through the
+# environment
 YSLOW_THRESHOLDS=${YSLOW_THRESHOLDS:-'{"overall": "0",
   "yexpires": "0",
   "ydns": "0",
@@ -24,16 +26,18 @@ YSLOW_THRESHOLDS=${YSLOW_THRESHOLDS:-'{"overall": "0",
   "ynofilter": "15",
   "ycdn": "F" }'}
 
-# we get the overall score, the response time and load time from here:
-# we only look at "/" because that's the only page we grab timings from:
+# we get the overall score, the response time and load time from here
+# we only look at "/" because that's the only page we grab timings from
 phantomjs yslow.js -i comps -f xml http://test-subject:8000/ > /results/yslow.xml
-# this will exit with a non-zero code if the tests don't pass:
+
+# we can test multiple pages here:
 for URL in "$@"
 do
   short=`echo ${URL} | tr -cd [[:alpha:]]`
   if [[ $short="" ]]; then
     short="slash"
   fi
+  # this will exit with a non-zero code if the tests don't pass:
   phantomjs yslow.js -i grade -t "${YSLOW_THRESHOLDS}" -f tap test-subject:8000${URL} > /results/${short}.tap
 done
 
@@ -46,5 +50,3 @@ rm -r /results/test-subject
 # maybe use a file instead? (-f urls.txt)
 sitespeed.io -r /results -d 0 -b firefox --url http://test-subject:8000/
 mv /results/test-subject/*/* /results/test-subject/
-
-#sitespeed.io -d 0 --tap --url http://test-subject:8000 "-b chrome -n 1" > /results/sitespeed.tap
