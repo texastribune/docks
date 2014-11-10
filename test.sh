@@ -42,9 +42,9 @@ export DISPLAY=:1.0
 
 # remove any previous results
 rm -r /results/test-subject
-# if you provide multiple --url looks like it ignores all but the last so doing
-# depth=1 instead:
-sitespeed.io -r /results -d 1 -b firefox --url http://test-subject:8000/
+# if you provide multiple --url looks like it ignores all but the last
+# maybe use a file instead? (-f urls.txt)
+sitespeed.io -r /results -d 0 -b firefox --url http://test-subject:8000/
 mv /results/test-subject/*/* /results/test-subject/
 
 #sitespeed.io -d 0 --tap --url http://test-subject:8000 "-b chrome -n 1" > /results/sitespeed.tap
