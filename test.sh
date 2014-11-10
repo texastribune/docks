@@ -50,3 +50,14 @@ rm -r /results/test-subject
 # maybe use a file instead? (-f urls.txt)
 sitespeed.io -r /results -d 0 -b firefox --url http://test-subject:8000/
 mv /results/test-subject/*/* /results/test-subject/
+
+# sitespeed.io -r /sitespeed-results -d 0 -b chrome,firefox -u http://www.texastribune.org/
+# --limitFile
+# --browser
+# --junit
+# --tap
+# --boxes
+# --configFile
+# --graphiteHost
+# --gpsiKey
+# --wptConfig
