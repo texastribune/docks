@@ -24,7 +24,7 @@ ADD init.xvfb /etc/init.d/xvfb
 RUN chmod +x /etc/init.d/xvfb
 
 # TODO: add supervisor to run frame buffer? Or just wrap sitespeed in a script
-# that starts it?
+# that starts it? (test.sh script for now)
 
 # Chrome:
 RUN \
@@ -39,16 +39,6 @@ RUN npm install -g phantomjs chromedriver browsertime
 RUN npm install sitespeed.io -g
 
 VOLUME /results
-# sitespeed.io -r /sitespeed-results -d 0 -b chrome,firefox -u http://www.texastribune.org/
-# --limitFile
-# --browser
-# --junit
-# --tap
-# --boxes
-# --configFile
-# --graphiteHost
-# --gpsiKey
-# --wptConfig
 
 WORKDIR /app
 ADD http://yslow.org/yslow-phantomjs-3.1.8.zip /app/
@@ -57,8 +47,6 @@ RUN unzip yslow-phantomjs-3.1.8.zip
 ENV DISPLAY :1.0
 
 # TODO: this should be replaced by the docker image under test:
-ENTRYPOINT ["/usr/bin/phantomjs", "/app/yslow.js","-i","grade", "-threshold", "B", "-f", "junit", "http://www.texastribune.org/"]
 ADD test.sh /app/
 RUN chmod +x /app/test.sh
 ENTRYPOINT ["/app/test.sh"]
-# --outputFolder
