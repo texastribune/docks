@@ -29,7 +29,11 @@ YSLOW_THRESHOLDS=${YSLOW_THRESHOLDS:-'{"overall": "0",
 # we get the overall score, the response time and load time from here:
 phantomjs yslow.js -i comps -f xml ${URLS} > /results/yslow.xml
 # this will exit with a non-zero code if the tests don't pass:
-phantomjs yslow.js -i grade -t "${YSLOW_THRESHOLDS}" -f tap ${URLS} > /results/yslow.tap
+for URL in "$@"
+do
+  short=`echo ${URL} | tr -cd [[:alpha:]]`
+  phantomjs yslow.js -i grade -t "${YSLOW_THRESHOLDS}" -f tap test-subject:8000${URL} > /results/${short}.tap
+done
 
 /etc/init.d/xvfb start
 export DISPLAY=:1.0
