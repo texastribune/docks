@@ -25,7 +25,7 @@ YSLOW_THRESHOLDS=${YSLOW_THRESHOLDS:-'{"overall": "0",
   "ycdn": "F" }'}
 
 # we get the overall score, the response time and load time from here:
-phantomjs yslow.js -i comps -f xml http://test-subject:8000/ > /results/yslow.xml
+phantomjs yslow.js -i comps -f xml ${URLS} > /results/yslow.xml
 # this will exit with a non-zero code if the tests don't pass:
 phantomjs yslow.js -i grade -t "${YSLOW_THRESHOLDS}" -f tap ${URLS} > /results/yslow.tap
 
@@ -34,7 +34,7 @@ export DISPLAY=:1.0
 
 # remove any previous results
 rm -r /results/test-subject
-sitespeed.io -r /results -d 0 -b firefox -u http://test-subject:8000/
+sitespeed.io -r /results -d 0 -b firefox -u ${URLS}
 mv /results/test-subject/*/* /results/test-subject/
 
 #sitespeed.io -d 0 --tap --url http://test-subject:8000 "-b chrome -n 1" > /results/sitespeed.tap
