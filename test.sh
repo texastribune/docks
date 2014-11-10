@@ -8,9 +8,11 @@ set -o xtrace
 
 # gather CL args into list of URLs:
 URLS=""
+SITESPEED_URLS=""
 for var in "$@"
 do
   URLS="${URLS} http://test-subject:8000${var}"
+  SITESPEED_URLS="${SITESPEED_URLS} -u http://test-subject:8000${var}"
 done
 
 YSLOW_THRESHOLDS=${YSLOW_THRESHOLDS:-'{"overall": "0",
@@ -34,7 +36,7 @@ export DISPLAY=:1.0
 
 # remove any previous results
 rm -r /results/test-subject
-sitespeed.io -r /results -d 0 -b firefox -u ${URLS}
+sitespeed.io -r /results -d 0 -b firefox ${SITESPEED_URLS}
 mv /results/test-subject/*/* /results/test-subject/
 
 #sitespeed.io -d 0 --tap --url http://test-subject:8000 "-b chrome -n 1" > /results/sitespeed.tap
