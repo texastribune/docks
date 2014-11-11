@@ -39,17 +39,18 @@ do
   fi
   # this will exit with a non-zero code if the tests don't pass:
   phantomjs yslow.js -i grade -t "${YSLOW_THRESHOLDS}" -f tap test-subject:8000${URL} > /results/${short}.tap
+  cat /results/${short}.tap
 done
 
-/etc/init.d/xvfb start
-export DISPLAY=:1.0
+#/etc/init.d/xvfb start
+#export DISPLAY=:1.0
 
 # remove any previous results
-rm -r /results/test-subject
+#rm -r /results/test-subject
 # if you provide multiple --url looks like it ignores all but the last
 # maybe use a file instead? (-f urls.txt)
-sitespeed.io -r /results -d 0 -b firefox --url http://test-subject:8000/
-mv /results/test-subject/*/* /results/test-subject/
+#sitespeed.io -r /results -d 0 -b firefox --url http://test-subject:8000/
+#mv /results/test-subject/*/* /results/test-subject/
 
 # sitespeed.io -r /sitespeed-results -d 0 -b chrome,firefox -u http://www.texastribune.org/
 # --limitFile
