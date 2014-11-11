@@ -4,7 +4,7 @@ set -o nounset
 # we don't want to stop if one job returns non-zero
 #set -o errexit
 set -o pipefail
-set -o xtrace
+#set -o xtrace
 
 # gather CL args into list of URLs:
 URLS=""
