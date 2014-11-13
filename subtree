@@ -13,6 +13,7 @@ REMOTES=(
   [mandrill]=git@github.com:texastribune/docker-mandrill.git
   [sputnik]=git@github.com:texastribune/docker-sputnik.git
   [sitespeed]=git@github.com:texastribune/docker-sitespeed.git
+  [workshop]=git@github.com:texastribune/docker-workshop.git
 )
 
 # Print help
