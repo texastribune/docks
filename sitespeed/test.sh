@@ -18,7 +18,7 @@ done
 YSLOW_THRESHOLDS=${YSLOW_THRESHOLDS:-'{"overall": "0",
   "yexpires": "0",
   "ydns": "0",
-  "ynumreq": "30",
+  "ynumreq": "0",
   "ycdn": "0",
   "ycompress": "20",
   "ymindom": "70",
