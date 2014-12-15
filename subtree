@@ -14,6 +14,7 @@ REMOTES=(
   [sputnik]=git@github.com:texastribune/docker-sputnik.git
   [sitespeed]=git@github.com:texastribune/docker-sitespeed.git
   [workshop]=git@github.com:texastribune/docker-workshop.git
+  [google-auth-proxy]=git@github.com:texastribune/docker-google-auth-proxy.git
 )
 
 # Print help
