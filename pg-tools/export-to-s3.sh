@@ -17,7 +17,9 @@ set -o pipefail
 
 set -o xtrace
 
-readonly filename=/tmp/sql.gz
+readonly filename=/tmp/db.pgdump
 
-phd pg_dump | gzip > ${filename}
+# plain-text:
+#phd pg_dump | gzip > ${filename}
+phd pg_dump --format=custom --verbose --file=${filename}
 aws s3 mv ${filename} ${S3_TARGET}
