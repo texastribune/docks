@@ -7,5 +7,3 @@ RUN pip install --quiet awscli postdoc
 ADD . /app
 
 ENTRYPOINT ["/bin/bash"]
-
-CMD ["/app/export-pg-db-to-s3.sh"]
