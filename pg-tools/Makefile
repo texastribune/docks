@@ -1,4 +1,4 @@
-APP=pg_dump
+APP=pg-tools
 NS=texastribune
 
 build:
