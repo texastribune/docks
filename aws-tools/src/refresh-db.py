@@ -22,7 +22,7 @@ from delorean import parse
 
 target_db = env.require('TARGET_DB')
 source_db = env.require('SOURCE_DB')
-db_subnet_group = env.require('DB_SUBNET_GROUP')
+db_subnet_group = env.get('DB_SUBNET_GROUP')
 security_group = env.require('SECURITY_GROUP')
 
 region = env.get('AWS_REGION', 'us-east-1')
@@ -84,13 +84,22 @@ if not snapshots:
     exit('{} has no snapshots'.format(source_db))
 snapshot = max(snapshots, key=lambda x: parse(x.snapshot_create_time)).id
 
-print "restoring to {} db from snapshot".format(target_db)
-rds_connection.restore_dbinstance_from_dbsnapshot(
-        identifier=snapshot,
-        instance_id=target_db,
-        instance_class=instance_class,
-        db_subnet_group_name=db_subnet_group,
-        )
+print "restoring to {} db from snapshot {}".format(target_db, snapshot)
+
+if db_subnet_group:
+    # if a subnet group is defined the instance ends up in that VPC:
+    rds_connection.restore_dbinstance_from_dbsnapshot(
+            identifier=snapshot,
+            instance_id=target_db,
+            instance_class=instance_class,
+            db_subnet_group_name=db_subnet_group,
+            )
+else:
+    rds_connection.restore_dbinstance_from_dbsnapshot(
+            identifier=snapshot,
+            instance_id=target_db,
+            instance_class=instance_class,
+            )
 
 # this takes a variable amount of time - about 10m
 while rds_connection.get_all_dbinstances(
@@ -102,9 +111,16 @@ while rds_connection.get_all_dbinstances(
 # instead I have to wait until it's created and then modify it
 
 print "modifying database security group..."
-rds_connection.modify_dbinstance(id=target_db,
-        apply_immediately=True,
-        vpc_security_groups=[security_group])
+if db_subnet_group:  # VPC
+    rds_connection.modify_dbinstance(id=target_db,
+            apply_immediately=True,
+            backup_retention_period=0,
+            vpc_security_groups=[security_group])
+else:  # no VPC:
+    rds_connection.modify_dbinstance(id=target_db,
+            apply_immediately=True,
+            backup_retention_period=0,
+            security_groups=[security_group])
 
 # print "deleting {} snapshot...".format(snapshot)
 # try:
