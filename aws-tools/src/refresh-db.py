@@ -17,13 +17,12 @@ from delorean import parse
 # - project_runpy
 # - Delorean
 
-# TODO allow the target to be specified externally and determine the
-#       source, subnet group and security group based on that?
-
 target_db = env.require('TARGET_DB')
 source_db = env.require('SOURCE_DB')
 db_subnet_group = env.get('DB_SUBNET_GROUP')
 security_group = env.require('SECURITY_GROUP')
+target_pass = env.require('TARGET_PASS')
+
 
 region = env.get('AWS_REGION', 'us-east-1')
 instance_class = env.get('INSTANCE_CLASS', 'db.t1.micro')
@@ -110,16 +109,18 @@ while rds_connection.get_all_dbinstances(
 # why won't it let me specify the security group on creation?
 # instead I have to wait until it's created and then modify it
 
-print "modifying database security group..."
+print "modifying new database..."
 if db_subnet_group:  # VPC
     rds_connection.modify_dbinstance(id=target_db,
             apply_immediately=True,
             backup_retention_period=0,
+            master_password=target_pass,
             vpc_security_groups=[security_group])
 else:  # no VPC:
     rds_connection.modify_dbinstance(id=target_db,
             apply_immediately=True,
             backup_retention_period=0,
+            master_password=target_pass,
             security_groups=[security_group])
 
 # print "deleting {} snapshot...".format(snapshot)
