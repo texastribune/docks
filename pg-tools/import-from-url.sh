@@ -8,7 +8,7 @@ set -o allexport
 
 readonly filename=/tmp/pg.dump
 
-curl -o ${filename} ${HEROKU_BACKUP_URL}
+curl -o ${filename} ${DATABASE_BACKUP_URL}
 
 TEMPLATE_DB=`dirname $DATABASE_URL`/template_db
 
