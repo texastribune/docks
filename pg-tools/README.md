@@ -9,8 +9,8 @@ A dockerized toolset for importing and exporting data from a postgreSQL database
 ```
 docker run -it --rm \
   --link=db:db \
-  --env=<aws_access_key_id> \
-  --env=<aws_secret_access_key> \
+  --env=AWS_ACCESS_KEY_ID=<aws_access_key_id> \
+  --env=AWS_SECRET_ACCESS_KEY=<aws_secret_access_key> \
   --env=DATABASE_URL=<database-url> \
   --env=S3_SOURCE=<s3-source> \
   texastribune/pg-tools /app/import-from-s3.sh
