@@ -4,9 +4,10 @@ MAINTAINER tech@texastribune.org
 RUN apt-get update && apt-get install -y \
   curl \
   postgresql-client \
-  pv
+  pv \
+  --no-install-recommends && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --quiet awscli postdoc
+RUN pip install awscli postdoc
 
 ADD . /app
 
