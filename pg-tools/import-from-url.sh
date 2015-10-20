@@ -9,7 +9,7 @@ readonly filename=/tmp/pg.dump
 
 curl -o ${filename} ${DATABASE_BACKUP_URL}
 
-TEMPLATE_DB=`dirname $DATABASE_URL`/template_db
+TEMPLATE_DB=$(dirname ${DATABASE_URL})/template_db
 
 phd TEMPLATE_DB dropdb --if-exists
 phd TEMPLATE_DB createdb

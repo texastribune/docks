@@ -9,7 +9,7 @@ readonly filename=/tmp/pg.dump
 
 aws s3 cp ${S3_SOURCE} ${filename}
 
-TEMPLATE_DB=`dirname $DATABASE_URL`/template_db
+TEMPLATE_DB=$(dirname ${DATABASE_URL})/template_db
 
 phd TEMPLATE_DB dropdb --if-exists
 phd TEMPLATE_DB createdb
