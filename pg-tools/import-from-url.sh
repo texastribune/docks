@@ -4,6 +4,7 @@ set -o nounset
 set -o errexit
 set -o pipefail
 set -o xtrace
+set -o allexport
 
 readonly filename=/tmp/pg.dump
 
