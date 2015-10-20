@@ -1,8 +1,13 @@
 FROM texastribune/base
 MAINTAINER tech@texastribune.org
 
-RUN apt-get install -yq postgresql-client pv > /dev/null
-RUN pip install --quiet awscli postdoc
+RUN apt-get update && apt-get install -y \
+  curl \
+  postgresql-client \
+  pv \
+  --no-install-recommends && rm -rf /var/lib/apt/lists/*
+
+RUN pip install awscli postdoc
 
 ADD . /app
 

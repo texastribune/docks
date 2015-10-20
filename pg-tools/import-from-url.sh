@@ -8,7 +8,7 @@ set -o allexport
 
 readonly filename=/tmp/pg.dump
 
-aws s3 cp ${S3_SOURCE} ${filename}
+curl -o ${filename} ${DATABASE_BACKUP_URL}
 
 TEMPLATE_DB=$(dirname ${DATABASE_URL})/template_db
 
