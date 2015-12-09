@@ -5,7 +5,7 @@ its own repository, the full history will be there as well.
 
 ### Deprecation Notice
 
-The [`texastribune/pg-tools`](https://hub.docker.com/r/texastribune/pg-tools/) Docker image is no longer built using this repo. All development has moved to the [`texastribune/docker-pg-tools`](https://github.com/texastribune/docker-pg-tools).
+The [`texastribune/pg-tools`](https://hub.docker.com/r/texastribune/pg-tools/) Docker image is no longer built using this repo. All development has moved to [`texastribune/docker-pg-tools`](https://github.com/texastribune/docker-pg-tools).
 
 ### Contributing
 
