@@ -15,7 +15,6 @@ REMOTES=(
   [sitespeed]=git@github.com:texastribune/docker-sitespeed.git
   [workshop]=git@github.com:texastribune/docker-workshop.git
   [google-auth-proxy]=git@github.com:texastribune/docker-google-auth-proxy.git
-  [pg-tools]=git@github.com:texastribune/docker-pg-tools.git
   [aws-tools]=git@github.com:texastribune/docker-aws-tools.git
   [uwsgi]=git@github.com:texastribune/docker-uwsgi.git
 )
