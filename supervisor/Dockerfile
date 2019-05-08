@@ -1,7 +1,6 @@
-FROM texastribune/base
-MAINTAINER tech@texastribune.org
+FROM debian:9.9
 
-RUN apt-get install -yq supervisor
+RUN apt-get update && apt-get -y install -qq supervisor
 
 RUN mkdir -p /app/logs
 
